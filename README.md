@@ -10,6 +10,6 @@ A virus written in bash by @TheG0df2ther.
 
 ## Checklist
 
-[] Infect bash files
-[] Infect python files
-[] Infect ELF files
+[-] Infect bash files
+[-] Infect python files
+[-] Infect ELF files
