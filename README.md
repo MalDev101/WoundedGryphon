@@ -11,5 +11,5 @@ A virus written in bash by @TheG0df2ther.
 ## Checklist
 
 * [x] Infect bash files
-* [] Infect python files
-* [] Infect ELF files
+* [ ] Infect python files
+* [ ] Infect ELF files
