@@ -4,9 +4,9 @@ A virus written in bash by @TheG0df2ther.
 
 ## Run
 
-*sudo chmod 755 WoundedGryphon.sh
+*sudo chmod 755 WoundedGryphon.sh*
 
-*sudo ./WoundedGryphon.sh
+*sudo ./WoundedGryphon.sh*
 
 ## Checklist
 
