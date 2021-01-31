@@ -31,6 +31,8 @@
 # Created by TheG0df2ther a MalDev101 project
 # This is only an experiment but it can be dangerous.
 # I am not responsible for the damage.
+# This is a virus that works on unix systems with bash installed.
+# Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
 
 SHEBANG="#!/bin/bash"
 
