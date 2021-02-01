@@ -11,9 +11,9 @@
 #   /   \  __\_  __ <   |  \____ \|  |  \ /  _ \ /    \ ----------
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
-#         / \/       \/    |__|        \/      \     \/ ---------
-#        /                   ______ ----------- # ---------------
-#       #         ______,---'__,---' ---------------------------
+#       /   \/       \/    |__|        \/      \     \/ ---------
+#      / Wonded Gryphon v3.0  ______--- # ---------------
+#     #      ______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
 #    /  /,,   `, ,-' -------------------------------------
@@ -52,10 +52,10 @@ function check() {
    then
       
       local LISTNOTREADY=$(echo "$IFBASH" | sed 's|:#!/bin/bash||')
-      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | tr -d '\n')
+      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | tr "\n" " ")
       local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
       local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | sed 's|:#arrow||')
-      LIST=$(echo "$LISTNOTREADY2D" | tr -d '\n')
+      LIST=$(echo "$LISTNOTREADY2D" | tr "\n" " ")
        
       if [ "$LIST" == "" ]
        
