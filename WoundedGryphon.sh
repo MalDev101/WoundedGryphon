@@ -51,11 +51,11 @@ function check() {
 
    then
       
-      local LISTNOTREADY=$(echo "$IFBASH" | tr -d ':#!/bin/bash')
-      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | sed -e 's/ /\ ,/g')
+      local LISTNOTREADY=$(echo "$IFBASH" | sed 's|:#!/bin/bash||')
+      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | tr -d '\n')
       local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
-      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | tr -d ':#arrow')
-      LIST=$(echo "$LISTNOTREADY2D" | sed -e 's/ /\ ,/g')
+      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | sed 's|:#arrow||')
+      LIST=$(echo "$LISTNOTREADY2D" | tr -d '\n')
        
       if [ "$LIST" == "" ]
        
