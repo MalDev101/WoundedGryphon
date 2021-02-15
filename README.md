@@ -11,11 +11,19 @@ A virus/ransomware written in bash by @TheG0df2ther.
 ## Options
 
 Show help page: --help
+
+
 Infect all bash files on the system: --infect
+
+
 Encrypt files in Desktop, Videos ...: --encrypt
+
+
 
 ## Checklist
 
+* [x] Encrypt files
+* [x] Banner function
 * [x] Infect bash files
 * [ ] Infect python files
 * [ ] Infect ELF files
