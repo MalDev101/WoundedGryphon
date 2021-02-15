@@ -19,6 +19,8 @@ Infect all bash files on the system: --infect
 Encrypt files in Desktop, Videos ...: --encrypt
 
 
+Self destruct when done: (--infect, --encrypt) --self-destruct
+
 
 ## Checklist
 
@@ -27,3 +29,4 @@ Encrypt files in Desktop, Videos ...: --encrypt
 * [x] Infect bash files
 * [ ] Infect python files
 * [ ] Infect ELF files
+* [x] Self destruct option
