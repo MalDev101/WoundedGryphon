@@ -21,6 +21,10 @@ Encrypt files in Desktop, Videos ...: --encrypt
 
 Self destruct when done: (--infect, --encrypt) --self-destruct
 
+Unencrypt files: --unencrypt
+
+
+Uninfect system: --uninfect
 
 ## Checklist
 
