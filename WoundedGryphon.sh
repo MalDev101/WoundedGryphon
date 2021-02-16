@@ -261,6 +261,8 @@ function help() {
    echo -e "$UCyan Unencrypt files: --unencrypt $NC"
    echo -e "$UCyan Uninfect system: --uninfect $NC"
 
+}
+
 # Cleanup function
 
 function cleanup() {
