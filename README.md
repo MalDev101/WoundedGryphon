@@ -34,3 +34,5 @@ Uninfect system: --uninfect
 * [ ] Infect python files
 * [ ] Infect ELF files
 * [x] Self destruct option
+* [x] Color output
+* [x] Unencrypt and uninfect command
