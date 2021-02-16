@@ -183,7 +183,7 @@ function check() {
       local LISTNOTREADY=$(echo "$IFBASH" | sed 's|:#!/bin/bash||')
       local LISTNOTREADYD=$(echo "$LISTNOTREADY" | tr "\n" " ")
       local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
-      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | sed 's|:#arrow||')
+      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | sed '/bar/,+1 d')
       LIST=$(echo "$LISTNOTREADY2D" | tr "\n" " ")
        
       if [ "$LIST" == "" ]
