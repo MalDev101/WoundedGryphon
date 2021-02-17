@@ -36,7 +36,7 @@ SHEBANG="#!/bin/bash"
 
 ME="$0"
 
-CAT=$(cat "$me")
+CAT=$(cat "$ME")
 
 FLAG="#arrow"
 
