@@ -10,21 +10,21 @@ A virus/ransomware written in bash by @TheG0df2ther.
 
 ## Options
 
-Show help page: --help
+*Show help page: --help*
 
 
-Infect all bash files on the system: --infect
+*Infect all bash files on the system: --infect*
 
 
-Encrypt files in Desktop, Videos ...: --encrypt
+*Encrypt files in Desktop, Videos ...: --encrypt*
 
 
-Self destruct when done: (--infect, --encrypt) --self-destruct
+*Self destruct when done: (--infect, --encrypt) --self-destruct*
 
-Unencrypt files: --unencrypt
+*Unencrypt files: --unencrypt*
 
 
-Uninfect system: --uninfect
+*Uninfect system: --uninfect*
 
 ## Checklist
 
