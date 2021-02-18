@@ -4,11 +4,6 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/MalDev101/WoundedGryphon.svg?style=social&label=Star&maxAge=2592000)](https://github.com/MalDev101/WoundedGryphon/stargazers)
 
-[![Version-shield]](https://raw.githubusercontent.com/MalDev101/WoundedGryphon/master/WoundedGryphon.sh)
-
-[![Bash5.0-shield]](http://tldp.org/LDP/abs/html/bashver5.html#AEN21220)
-
-[![License-shield]](https://raw.githubusercontent.com/MalDev101/WoundedGryphon/master/LICENSE.md)
 
 A virus/ransomware written in bash by @TheG0df2ther.
 
