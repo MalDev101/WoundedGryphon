@@ -1,6 +1,5 @@
 # Wounded-Gryphon
 
-[![HitCount](http://hits.dwyl.com/MalDev101/Loveware.svg)](http://hits.dwyl.com/MalDev101/WoundedGryphon)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-red.svg?style=round)](https://github.com/MalDev101/WoundedGryphon/issues/)
 [![GitHub stars](https://img.shields.io/github/stars/MalDev101/WoundedGryphon.svg?style=social&label=Star&maxAge=2592000)](https://github.com/MalDev101/WoundedGryphon/stargazers)
 
