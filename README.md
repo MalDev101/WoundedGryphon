@@ -2,7 +2,7 @@
 
 [![HitCount](http://hits.dwyl.com/MalDev101/WoundedGryphon.svg)](http://hits.dwyl.com/MalDev101/WoundedGryphon)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-red.svg?style=round)](https://github.com/TheG0df2ther/Loveware/issues/1)
-[![GitHub stars](https://img.shields.io/github/stars/TheG0df2ther/Loveware.svg?style=social&label=Star&maxAge=2592000)](https://github.com/TheG0df2ther/Loveware/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/MalDev101/WoundedGryphon.svg?style=social&label=Star&maxAge=2592000)](https://github.com/MalDev101/WoundedGryphon/stargazers)
 
 A virus/ransomware written in bash by @TheG0df2ther.
 
