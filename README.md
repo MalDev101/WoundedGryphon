@@ -30,6 +30,8 @@ A virus/ransomware written in bash by @TheG0df2ther.
 
 *Uninfect system: --uninfect*
 
+*Show random banner: --banner*
+
 ## Checklist
 
 * [x] Encrypt files
