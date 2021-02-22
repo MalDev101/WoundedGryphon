@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v4.0  ______----------- # ---------------
+#      / Wonded Gryphon v4.1  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -40,7 +40,7 @@ CAT=$(cat "$ME")
 
 FLAG="#arrow"
 
-VERSION="v4.0"
+VERSION="v4.1"
 
 FLAG="$1"
 
@@ -274,6 +274,7 @@ function helpfunction() {
    echo -e "$UCyan Self destruct when done: (--infect, --encrypt) --self-destruct $NC"
    echo -e "$UCyan Unencrypt files: --unencrypt $NC"
    echo -e "$UCyan Uninfect system: --uninfect $NC"
+   echo -e "$UCyan Only show random banner: --banner $NC"
 
 }
 
@@ -392,6 +393,8 @@ function CHOOSE_BANNER() {
    banners=(banner1 banner2 banner3 banner4 banner5) ;
    THECHOSENONE="${banners[RANDOM%${#banners[@]}]}";
 }
+
+CHOOSE_BANNER
 
 function BANNER() {
    
@@ -740,8 +743,6 @@ function unencrypt() {
 
 # Start
 
-CHOOSE_BANNER
-
 if [ "$FLAG" == "--infect" ]
 
 then
@@ -766,6 +767,11 @@ elif [ "$FLAG" == "--unencrypt" ]
 
 then
    unencrypt
+
+elif [ "$FLAG" == "--banner" ]
+
+then
+   BANNER
 
 elif [ $# -le 0 ]
 
