@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/MalDev101/WoundedGryphon.svg?style=social&label=Star&maxAge=2592000)](https://github.com/MalDev101/WoundedGryphon/stargazers)
 
 
-A virus/ransomware written in bash by @TheG0df2ther.
+A virus/ransomware written in bash by @Da2dalus.
 
 ## Run
 
