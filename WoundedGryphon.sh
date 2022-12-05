@@ -246,7 +246,7 @@ function banner5() {
    echo -e "$Red     ░        ░ ░     ░              ░    ░       ░  ░   ░          ░    ░     ░ ░               ░  ░  ░    ░ ░           ░  $NC";
    echo -e "$Red                                        ░              ░                       ░ ░                                           $NC";
 
-
+}
 
 function banner_text() {
    
